@@ -1,4 +1,4 @@
-# nameservice
+# Name Service
 
 ## Project setup
 ```

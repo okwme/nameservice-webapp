@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <ul>
-      <li><a :class="view === 'welcome' ? 'active': 'inactive'" href="#" @click.prevent="view = 'welcome'">Welcome</a></li>
-      <li><a :class="view === 'commands' ? 'active': 'inactive'" href="#" @click.prevent="view = 'commands'">Commands</a></li>
-      <li><a :class="view === 'names' ? 'active': 'inactive'" href="#" @click.prevent="view = 'names'">Names</a></li>
-      <li><a :class="view === 'faucet' ? 'active': 'inactive'" href="#" @click.prevent="view = 'faucet'">Faucet</a></li>
-    </ul>
+    <div id="corner">
+      <span id="title">Name Service Web App</span>
+      <ul>
+        <li><a :class="view === 'welcome' ? 'active': 'inactive'" href="#" @click.prevent="view = 'welcome'">Welcome</a></li>
+        <li><a :class="view === 'commands' ? 'active': 'inactive'" href="#" @click.prevent="view = 'commands'">Commands</a></li>
+        <li><a :class="view === 'names' ? 'active': 'inactive'" href="#" @click.prevent="view = 'names'">Names</a></li>
+        <li><a :class="view === 'faucet' ? 'active': 'inactive'" href="#" @click.prevent="view = 'faucet'">Faucet</a></li>
+      </ul>
+    </div>
     <div id="page">
-      <Commands v-if="view === 'commands'"/>
-      <Names v-else-if="view === 'names'"/>
-      <Faucet v-else-if="view === 'faucet'"/>
-      <Welcome v-else />
+      <Commands v-show="view === 'commands'"/>
+      <Names v-show="view === 'names'"/>
+      <Faucet v-show="view === 'faucet'"/>
+      <Welcome v-show="view === 'welcome'" />
     </div>
   </div>
 </template>
@@ -38,11 +41,27 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+body, html {
+  padding:0;
+  margin:0;
+}
+#title {
+  font-weight: bold;
+}
+#corner {
+  position: absolute;
+  top:0px;
+  left:0px;
+  padding:10px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #494949;
   margin-top: 60px;
 }
 #page {
@@ -50,7 +69,7 @@ export default {
   margin:auto;
 }
 ul {
-  text-align: center;
+  display: inline;
 }
 ul li {
   display: inline;
@@ -62,5 +81,11 @@ ul li a {
 }
 ul li a.active {
   text-decoration: underline;
+}
+.center {
+  text-align: center;
+}
+a {
+  color: blue;
 }
 </style>
